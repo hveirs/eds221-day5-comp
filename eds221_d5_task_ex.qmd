@@ -1,0 +1,29 @@
+---
+title: "Afternoon Examples"
+format: html
+editor: visual
+---
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+```
+
+Using mutate to change columns in a data frame
+
+```{r}
+penguins_year_chr <- penguins |>
+  mutate(year = as.character(year))
+
+penguins_year_num <- penguins_year_chr |> 
+  mutate(year = as.numeric(year))
+```
+
+Making subsets using filter
+ 
+```{r}
+penguins_ad_ch <- penguins_year_num |> 
+  filter(species %in% c("Adelie", "Chinstrap"))
+```
+
+

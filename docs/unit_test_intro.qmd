@@ -1,0 +1,57 @@
+---
+title: "Unit Test Intro"
+author: "Hailey Veirs"
+format: html
+editor: visual
+---
+
+```{r}
+library(testthat)
+library(tidyverse)
+library(here)
+```
+
+
+
+```{r}
+mean_range <- function(df) {
+  col_means <- apply(X = df, MARGIN = 2, FUN = mean, na.rm = TRUE)
+  col_mean_max <- max(col_means)
+  col_mean_min <- min(col_means)
+  print(c(col_mean_max, col_mean_min))
+}
+
+mean_range(mtcars)
+```
+
+```{r}
+# Test the length of the expected vector or sequence/df.
+expect_length(mean_range(mtcars), 2)
+```
+
+```{r}
+# Test to see if the max is acutally larger than or equal to the min.
+expect_true(mean_range(mtcars)[1] >= mean_range(mtcars)[2])
+```
+
+```{r}
+# Test to see the type (NOT CLASS)
+expect_type(mean_range(mtcars), "double")
+```
+
+Sourcing a script!
+
+```{r}
+source(here::here("src", "name_cart_fun.R"))
+
+name_cart("lasagna", "giraffe")
+```
+
+```{r}
+source(here("src", "cork_oak_growth.R"))
+
+height_t2(height_t1 = 10, t1 = 1, t2 = seq(from = 1.5, to = 5.5, by = 0.5))
+```
+
+
+
